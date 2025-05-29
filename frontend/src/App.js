@@ -3,7 +3,11 @@ import React, { useState } from "react";
 import ExercisesPage from "./components/ExercisesPage";
 import HomePage from "./components/HomePage";
 import LandingPage from "./components/LandingPage";
+ajout-main
 import SettingsPage from './components/SettingsPage';
+
+import "./index.css";
+master
 
 function App() {
   const [currentPage, setCurrentPage] = useState("landing"); // 'landing', 'home', 'exercises'
@@ -53,6 +57,7 @@ function App() {
 
   return (
     <div className="app">
+ajout-main
       {/* Navigation */}
       {isLoggedIn && (
         <nav style={{
@@ -91,13 +96,35 @@ function App() {
             >
               Déconnexion
             </button>
+
+      {/* Navigation (simple boutons pour l'exemple) */}
+      {currentPage !== "landing" && (
+        <nav className="navbar">
+          <div className="navbar-content">
+            <h1 style={{ color: "var(--primary-color)", margin: 0 }}>Éloquence</h1>
+            <div className="nav-buttons">
+              <button onClick={goToHomePage}>Accueil</button>
+              <button onClick={goToExercisesPage}>Exercices</button>
+              <button onClick={goToLandingPage} style={{ backgroundColor: "var(--danger-color)" }}>
+                Déconnexion
+              </button>
+            </div>
+master
           </div>
         </nav>
       )}
 
+ajout-main
       {/* Contenu de la page actuelle */}
       <div style={{ padding: '0 20px 20px 20px' }}>
         {renderPage()}
+
+      {/* Affichage conditionnel des pages */}
+      <div className="container">
+        {currentPage === "landing" && <LandingPage onLoginClick={goToHomePage} onSignupClick={goToHomePage} />} {/* Pour l'instant, login/signup redirigent vers home */}
+        {currentPage === "home" && <HomePage />}
+        {currentPage === "exercises" && <ExercisesPage />}
+master
       </div>
     </div>
   );
